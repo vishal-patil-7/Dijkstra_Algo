@@ -6,8 +6,9 @@ on:
       - main
 
 permissions:
-  pages: write
-  id-token: write
+  contents: read  # Allows checkout to read repository content
+  pages: write    # Allows deployment to GitHub Pages
+  id-token: write # Allows OIDC token generation for GitHub Pages
 
 jobs:
   build-and-deploy:
@@ -29,9 +30,9 @@ jobs:
         run: npm run build
 
       - name: Upload build artifact
-        uses: actions/upload-pages-artifact@v3 # Updated from v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4 # Updated from v2
+        uses: actions/deploy-pages@v4
