@@ -1,0 +1,11 @@
+.grid {
+    margin: 20px 0 0;
+  }
+  .Button {
+    width: 500px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 50px;
+    background-color: ivory;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
