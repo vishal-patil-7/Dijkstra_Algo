@@ -11,8 +11,11 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  build-and-deploy: # This is your job name
     runs-on: ubuntu-latest
+    environment: # THIS IS THE CRUCIAL PART
+      name: github-pages # You can name your environment, "github-pages" is standard
+      url: ${{ steps.deployment.outputs.page_url }} # This sets the clickable URL
 
     steps:
       - name: Checkout code
@@ -21,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Updated from '16' to '20'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm ci
@@ -35,4 +38,5 @@ jobs:
           path: build
 
       - name: Deploy to GitHub Pages
+        id: deployment # This 'id' allows us to refer to this step's outputs
         uses: actions/deploy-pages@v4
